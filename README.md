@@ -1,4 +1,4 @@
-# Your Name — Ceramic Artist Portfolio
+# Kristin Wang — Ceramic Artist Portfolio
 
 A four-page portfolio and teaching-application site for a ceramic artist, built with
 [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
