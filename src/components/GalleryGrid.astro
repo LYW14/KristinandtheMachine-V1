@@ -1,0 +1,39 @@
+---
+import PlaceholderImage from './PlaceholderImage.astro';
+import type { WorkPiece } from '../data/work';
+
+interface Props {
+  pieces: WorkPiece[];
+}
+
+const { pieces } = Astro.props;
+
+const aspectClass: Record<WorkPiece['aspect'], string> = {
+  square: 'aspect-square',
+  portrait: 'aspect-[3/4]',
+  wide: 'aspect-[4/3]',
+};
+---
+
+<!-- CSS columns give an editorial masonry feel without a JS layout library
+     — pieces flow down the shortest column, proportions stay varied but
+     the grid stays performant and simple. -->
+<div class="columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
+  {
+    pieces.map((piece) => (
+      <button
+        type="button"
+        data-lightbox
+        data-alt={piece.alt}
+        class="group block w-full break-inside-avoid text-left"
+        aria-label={`View larger: ${piece.alt}`}
+      >
+        <PlaceholderImage
+          alt={piece.alt}
+          ratio={aspectClass[piece.aspect]}
+          class="transition-opacity duration-300 ease-quiet group-hover:opacity-90"
+        />
+      </button>
+    ))
+  }
+</div>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+import PullQuote from '../components/PullQuote.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="How a corporate career turned into a ceramics practice, and why that led to wanting to teach."
+  active="about"
+>
+  <section class="mx-auto max-w-6xl px-6 pb-4 pt-14 sm:px-8 sm:pt-20">
+    <h1 class="font-display text-4xl text-ink sm:text-5xl">About</h1>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-10 sm:px-8">
+    <div class="grid gap-10 sm:grid-cols-5 sm:gap-14">
+      <div class="sm:col-span-3">
+        <p class="max-w-measure leading-relaxed text-clay">
+          For a few years, my life looked like most people's do after college: a job with a
+          title, a commute, a calendar full of meetings. It was fine. It just wasn't mine in any
+          particular way. I don't think I realized how much I was missing a place to make
+          something with my hands until I found one.
+        </p>
+        <p class="mt-5 max-w-measure leading-relaxed text-clay">
+          I signed up for a beginner wheel-throwing class on a whim, mostly because a friend
+          didn't want to go alone. I was bad at it &mdash; genuinely, comically bad. Clay went
+          everywhere. Nothing I made in that first class was usable. But something about sitting
+          at the wheel, focused entirely on one small, physical problem, felt like a kind of
+          quiet I hadn't had in a long time.
+        </p>
+      </div>
+      <PlaceholderImage
+        alt="Early photograph from the artist's first ceramics classes"
+        ratio="aspect-[3/4]"
+        class="sm:col-span-2"
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-10 sm:px-8">
+    <div class="grid gap-10 sm:grid-cols-5 sm:gap-14">
+      <PlaceholderImage
+        alt="Photograph of shelves of finished work from a community studio"
+        ratio="aspect-[3/4] sm:order-1"
+        class="sm:order-1 sm:col-span-2"
+      />
+      <div class="sm:order-2 sm:col-span-3">
+        <p class="max-w-measure leading-relaxed text-clay">
+          What started as one class became a weekly habit, and then something closer to a
+          second life. Over the next several years, I moved around for work &mdash; San
+          Francisco, then Boston, then New York &mdash; and each time, one of the first things I
+          did in a new city was find a community studio. Looking back, that says a lot about how
+          much ceramics had come to matter to me.
+        </p>
+        <p class="mt-5 max-w-measure leading-relaxed text-clay">
+          Each studio had its own personality. San Francisco taught me technique &mdash; patient,
+          exacting instructors who cared about the fundamentals. Boston is where I first started
+          glazing with any real intention, and where I made my first pieces I was genuinely proud
+          of. New York is where I started thinking about ceramics as something I might teach
+          someday, not just make.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured pull quote — the one place on the site where the copy is
+       allowed to take up real visual space. -->
+  <section class="border-y border-mist/40 bg-mist-50">
+    <div class="mx-auto max-w-4xl px-6 py-16 sm:px-8 sm:py-24">
+      <PullQuote>
+        Ceramics surprised me. I didn't grow up making art, and I didn't expect to find a
+        creative practice that would become such an important part of my life. What started as
+        trying something completely new gradually became the place where I learned patience,
+        embraced imperfection, and discovered a part of myself I hadn't explored before. That's
+        one of the reasons I care so deeply about teaching. You never know which student is
+        trying ceramics on a whim and is about to discover something that changes how they see
+        themselves.
+      </PullQuote>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20">
+    <div class="grid gap-10 sm:grid-cols-5 sm:gap-14 sm:items-center">
+      <div class="sm:col-span-3">
+        <p class="max-w-measure leading-relaxed text-clay">
+          These days, my practice looks different than it did five years ago. I throw larger,
+          more deliberate forms. I've stopped being precious about pieces that don't survive the
+          kiln &mdash; some of my favorite work has come out of glaze tests I expected to fail.
+          Mostly, I've gotten more comfortable with the parts of the process I can't fully
+          control, which is maybe the most useful thing ceramics has taught me.
+        </p>
+        <p class="mt-5 max-w-measure leading-relaxed text-clay">
+          What hasn't changed is why I keep coming back: the studios that shaped me were never
+          just about technique. They were places where people showed up for each other every
+          week. I'd like to help build that for someone else &mdash; which is why I'm ready to
+          teach.
+        </p>
+      </div>
+      <PlaceholderImage
+        alt="Recent photograph of the artist's current studio space and tools"
+        ratio="aspect-[4/5]"
+        class="sm:col-span-2"
+      />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+// The site's one signature element: an oversized, italic serif statement
+// set beside a single oxblood rule. Used sparingly (About page, plus one
+// quieter echo on Teaching) so it stays memorable instead of decorative.
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<blockquote class={`flex gap-6 sm:gap-10 ${className}`}>
+  <div class="mt-2 w-px shrink-0 self-stretch bg-oxblood/70" aria-hidden="true"></div>
+  <p class="font-display text-2xl italic leading-relaxed text-ink sm:text-3xl">
+    <slot />
+  </p>
+</blockquote>

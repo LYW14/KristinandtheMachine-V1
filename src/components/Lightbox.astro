@@ -1,0 +1,69 @@
+---
+// A single shared lightbox for the whole gallery. Tiles opt in by adding
+// `data-lightbox` + `data-alt` (see GalleryGrid.astro). Kept as plain DOM/JS
+// rather than a React island: it's ~40 lines, needs no state management
+// library, and this keeps the site's total JS footprint tiny.
+---
+
+<div
+  id="lightbox"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/90 p-4 sm:p-10"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Enlarged photo view"
+>
+  <button
+    id="lightbox-close"
+    type="button"
+    class="absolute right-4 top-4 text-3xl leading-none text-paper/80 hover:text-paper sm:right-8 sm:top-8"
+    aria-label="Close enlarged view"
+  >
+    &times;
+  </button>
+
+  <div class="max-h-full max-w-4xl">
+    <div id="lightbox-image-wrap" class="photo-placeholder aspect-[4/5] max-h-[80vh] w-[80vw] max-w-2xl">
+      <span class="placeholder-tag" id="lightbox-caption"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const closeBtn = document.getElementById('lightbox-close');
+  const captionEl = document.getElementById('lightbox-caption');
+
+  function openLightbox(alt: string) {
+    if (!lightbox || !captionEl) return;
+    captionEl.textContent = alt;
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((tile) => {
+    tile.addEventListener('click', () => openLightbox(tile.dataset.alt ?? ''));
+    tile.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(tile.dataset.alt ?? '');
+      }
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>

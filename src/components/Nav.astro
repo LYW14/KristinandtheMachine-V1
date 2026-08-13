@@ -1,0 +1,89 @@
+---
+interface Props {
+  active: 'home' | 'work' | 'teaching' | 'about';
+}
+
+const { active } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Home', key: 'home' },
+  { href: '/work', label: 'Work', key: 'work' },
+  { href: '/teaching', label: 'Teaching', key: 'teaching' },
+  { href: '/about', label: 'About', key: 'about' },
+] as const;
+---
+
+<header class="sticky top-0 z-40 border-b border-mist/50 bg-paper/90 backdrop-blur-sm">
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-8"
+    aria-label="Primary"
+  >
+    <a
+      href="/"
+      class="font-display text-lg tracking-wide text-ink no-underline decoration-transparent"
+    >
+      Kristin Wang
+    </a>
+
+    <!-- Mobile menu toggle -->
+    <button
+      id="nav-toggle"
+      type="button"
+      class="flex flex-col gap-1.5 p-2 sm:hidden"
+      aria-expanded="false"
+      aria-controls="nav-links"
+      aria-label="Toggle navigation menu"
+    >
+      <span class="block h-px w-6 bg-ink transition-transform duration-300 ease-quiet"></span>
+      <span class="block h-px w-6 bg-ink transition-opacity duration-300 ease-quiet"></span>
+      <span class="block h-px w-6 bg-ink transition-transform duration-300 ease-quiet"></span>
+    </button>
+
+    <ul
+      id="nav-links"
+      class="absolute left-0 right-0 top-full hidden flex-col gap-0 border-b border-mist/50 bg-paper px-6 py-2 sm:static sm:flex sm:flex-row sm:gap-8 sm:border-none sm:bg-transparent sm:px-0 sm:py-0"
+    >
+      {
+        links.map((link) => (
+          <li class="border-b border-mist/30 py-3 sm:border-none sm:py-0">
+            <a
+              href={link.href}
+              aria-current={active === link.key ? 'page' : undefined}
+              class:list={[
+                'text-sm font-medium tracking-wide no-underline transition-colors duration-200 ease-quiet',
+                active === link.key
+                  ? 'text-oxblood'
+                  : 'text-ink/80 decoration-transparent hover:text-oxblood',
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  // Minimal, dependency-free mobile menu toggle. No framework hydration
+  // needed for this — it's a handful of lines, so it stays a plain script
+  // rather than pulling in an island.
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-links');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('flex');
+    menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+
+  // Close the mobile menu when a link is chosen.
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

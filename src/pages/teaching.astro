@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+import PullQuote from '../components/PullQuote.astro';
+---
+
+<BaseLayout
+  title="Teaching"
+  description="Why I want to teach ceramics, my teaching philosophy, and the kind of studio I hope to help build."
+  active="teaching"
+>
+  <section class="mx-auto max-w-6xl px-6 pt-14 sm:px-8 sm:pt-20">
+    <h1 class="font-display text-4xl text-ink sm:text-5xl">Teaching</h1>
+  </section>
+
+  <!-- Section 1 — Why I Want to Teach -->
+  <section class="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20">
+    <div class="grid gap-10 sm:grid-cols-2 sm:items-center sm:gap-14">
+      <div>
+        <h2 class="font-display text-3xl text-ink">Why I Want to Teach</h2>
+        <p class="mt-6 max-w-measure text-base leading-relaxed text-clay sm:text-lg">
+          When I first started throwing, I wasn't naturally good at it. Centering felt
+          impossible, my pieces collapsed, and I questioned whether I would ever improve. What
+          kept me coming back wasn't quick success&mdash;it was instructors who encouraged
+          experimentation, celebrated small wins, and made the studio feel like a place I
+          belonged. Years later, I still carry those lessons with me, and they're a big part of
+          why I want to teach.
+        </p>
+      </div>
+      <PlaceholderImage
+        alt="Studio photograph of a wheel-thrown piece early in the process, still uneven"
+        ratio="aspect-[4/5]"
+      />
+    </div>
+  </section>
+
+  <!-- Section 2 — My Teaching Philosophy -->
+  <section class="border-t border-mist/40 bg-mist-50">
+    <div class="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20">
+      <h2 class="font-display text-3xl text-ink">My Teaching Philosophy</h2>
+
+      <div class="mt-8 grid gap-10 sm:grid-cols-2 sm:gap-14">
+        <p class="max-w-measure leading-relaxed text-clay">
+          Every student learns differently. Some students want detailed demonstrations before
+          they begin, while others learn best by getting their hands dirty and asking questions
+          along the way. My goal is to understand how each student learns and meet them where
+          they are.
+        </p>
+        <p class="max-w-measure leading-relaxed text-clay">
+          I've experienced both sides of that dynamic myself. I've been the advanced student in
+          beginner classes who needed very little guidance, and I've also been the least
+          experienced student in intermediate classes who benefited from extra encouragement and
+          one-on-one support. Those experiences taught me that great instruction isn't
+          one-size-fits-all.
+        </p>
+      </div>
+
+      <!-- The contrast the brief asks to emphasize, handled typographically
+           rather than with a heavier graphic treatment: two words set in
+           the display italic, divided by a thin oxblood rule. -->
+      <div class="mt-12 flex flex-wrap items-center gap-4 font-display text-xl italic text-ink sm:text-2xl">
+        <span>technical foundations</span>
+        <span class="h-px w-10 bg-oxblood sm:w-14" aria-hidden="true"></span>
+        <span>room to explore</span>
+      </div>
+
+      <p class="mt-8 max-w-measure leading-relaxed text-clay">
+        I believe the best classes balance technical foundations with room to explore. Students
+        should leave understanding <em class="not-italic font-medium text-ink">why</em> a technique
+        works while also feeling excited to experiment and develop their own creative voice.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3 — The Kind of Studio I Hope to Build -->
+  <section class="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20">
+    <div class="grid gap-10 sm:grid-cols-2 sm:items-center sm:gap-14">
+      <PlaceholderImage
+        alt="Wide studio photograph showing several students working at wheels together"
+        ratio="aspect-[4/5] sm:order-2"
+        class="sm:order-2"
+      />
+      <div class="sm:order-1">
+        <h2 class="font-display text-3xl text-ink">The Kind of Studio I Hope to Build</h2>
+        <p class="mt-6 max-w-measure leading-relaxed text-clay">
+          Community is one of the reasons I fell in love with ceramics.
+        </p>
+        <p class="mt-4 max-w-measure leading-relaxed text-clay">
+          Having worked in community studios across San Francisco, Boston, and New York, I've
+          seen how much an instructor shapes the culture of a class. The best instructors didn't
+          just teach throwing&mdash;they remembered students' names, encouraged conversations,
+          celebrated progress, and created spaces where people wanted to spend time together.
+        </p>
+        <PullQuote class="mt-8">
+          I'd love to help build that kind of environment at Firebox: one where students feel
+          welcomed, supported, and excited to return each week.
+        </PullQuote>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

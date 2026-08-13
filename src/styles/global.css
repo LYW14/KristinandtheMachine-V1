@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap');
+
+@layer base {
+  * {
+    @apply border-mist/40;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply bg-paper text-clay font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-ink;
+  }
+
+  a {
+    @apply text-ochre-600 underline decoration-ochre/40 underline-offset-4 transition-colors duration-200 ease-quiet hover:decoration-ochre;
+  }
+
+  /* Visible keyboard focus everywhere, styled to match the palette rather
+     than the browser default blue. */
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid theme('colors.oxblood.DEFAULT');
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Small tracked-out uppercase label used for gallery categories and
+     section eyebrows — the one structural device on the site, used only
+     where it names something real (a category), never as decoration. */
+  .eyebrow {
+    @apply inline-block text-xs font-medium tracking-widest2 uppercase text-oxblood;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 border border-ink px-7 py-3 text-sm font-medium tracking-wide text-ink transition-all duration-300 ease-quiet hover:border-oxblood hover:bg-oxblood hover:text-paper;
+  }
+
+  .btn-primary:focus-visible {
+    outline-offset: 4px;
+  }
+
+  /* Placeholder photography block. Until real photography is dropped in,
+     every image slot renders as a soft, textured tile in-palette (rather
+     than a jarring gray box or broken image icon) with its intended
+     filename + alt text printed in the corner, so replacement is obvious
+     at a glance. */
+  .photo-placeholder {
+    @apply relative flex w-full items-end overflow-hidden bg-gradient-to-br from-mist/70 via-mist-50 to-paper-dim;
+    background-image:
+      repeating-linear-gradient(
+        135deg,
+        rgba(38, 53, 80, 0.045) 0px,
+        rgba(38, 53, 80, 0.045) 1px,
+        transparent 1px,
+        transparent 14px
+      );
+  }
+
+  .photo-placeholder .placeholder-tag {
+    @apply m-3 max-w-[calc(100%-1.5rem)] bg-paper/90 px-2.5 py-1.5 text-[10px] leading-tight text-clay/80 backdrop-blur-sm;
+  }
+}

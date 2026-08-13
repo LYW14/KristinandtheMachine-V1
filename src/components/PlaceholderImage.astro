@@ -1,0 +1,19 @@
+---
+// A stand-in for real photography. Renders as an in-palette textured tile
+// (never a gray box or broken-image icon) and always prints its intended
+// alt text in the corner, so swapping in the final shoot is a matter of
+// replacing this component's usage with a real <img>, not hunting for
+// where placeholders live.
+interface Props {
+  alt: string;
+  ratio?: string; // e.g. "aspect-[4/5]", "aspect-square", "aspect-video"
+  class?: string;
+  label?: string;
+}
+
+const { alt, ratio = 'aspect-[4/5]', class: className = '', label } = Astro.props;
+---
+
+<div class={`photo-placeholder ${ratio} ${className}`} role="img" aria-label={alt}>
+  <span class="placeholder-tag">{label ?? alt}</span>
+</div>
