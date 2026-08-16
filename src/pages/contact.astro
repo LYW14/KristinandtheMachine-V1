@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaceholderImage from '../components/PlaceholderImage.astro';
+
+const socialLinks = [
+  {
+    label: 'Instagram',
+    handle: '@kristinandthemachine',
+    href: 'https://www.instagram.com/kristinandthemachine/',
+  },
+  {
+    label: 'Etsy Shop',
+    handle: 'kristinandthemachine',
+    href: 'https://www.etsy.com/shop/kristinandthemachine',
+  },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch, or find finished pieces on Instagram and Etsy."
+  active="contact"
+>
+  <section class="mx-auto max-w-6xl px-6 py-14 sm:px-8 sm:py-20">
+    <div class="grid gap-12 sm:grid-cols-2 sm:items-center sm:gap-16">
+      <div>
+        <h1 class="font-display text-4xl text-ink sm:text-5xl">Contact</h1>
+        <p class="mt-6 max-w-measure leading-relaxed text-clay sm:text-lg">
+          I'd love to hear from you &mdash; whether it's about a commission, a question about a
+          piece, or a conversation about teaching. The easiest ways to reach me are below.
+        </p>
+
+        <div class="mt-10 flex flex-col gap-3">
+          <a
+            href="mailto:kristinandthemachine@gmail.com"
+            class="inline-flex w-fit items-center gap-2 text-base font-medium text-ink decoration-ink/30 hover:text-oxblood"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              class="h-5 w-5 shrink-0"
+              aria-hidden="true"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m4 7 8 6 8-6" />
+            </svg>
+            kristinandthemachine@gmail.com
+          </a>
+        </div>
+
+        <ul class="mt-6 flex flex-col gap-3">
+          {
+            socialLinks.map((social) => (
+              <li>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex w-fit items-center gap-2 text-base font-medium text-ink decoration-ink/30 hover:text-oxblood"
+                >
+                  {social.label === 'Instagram' ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      class="h-5 w-5 shrink-0"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      class="h-5 w-5 shrink-0"
+                      aria-hidden="true"
+                    >
+                      <path d="M4 8h16l-1 12H5L4 8Z" />
+                      <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+                    </svg>
+                  )}
+                  <span>
+                    {social.label}
+                    <span class="ml-2 text-sm font-normal text-clay/60">{social.handle}</span>
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <PlaceholderImage
+        alt="Photograph of the artist in the studio, available for shop and commission inquiries"
+        ratio="aspect-[4/5]"
+      />
+    </div>
+  </section>
+</BaseLayout>

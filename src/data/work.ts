@@ -1,12 +1,5 @@
 // Central data model for the Work page gallery.
 //
-// Why a plain typed module instead of Astro content collections: every
-// entry today is a placeholder (no final photography yet), and the schema
-// is simple enough that a typed array is easier for a non-technical client
-// to eventually hand edits to than a folder of markdown frontmatter would
-// be. If the shoot list grows large or the client wants to add long-form
-// notes per piece, this is a natural upgrade path to src/content/work/*.md
-// with an Astro content collection using the same field names.
 
 export type WorkCategory = 'pieces' | 'larger-forms' | 'experiments' | 'process';
 
