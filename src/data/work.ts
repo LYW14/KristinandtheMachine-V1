@@ -1,63 +1,85 @@
 // Central data model for the Work page gallery.
 //
-
-export type WorkCategory = 'pieces' | 'larger-forms' | 'experiments' | 'process';
+// One flat list, deliberately no category grouping — the gallery reads as
+// a single continuous, fluid grid rather than sectioned-off categories.
 
 export interface WorkPiece {
-  /** Stable id, also used for the lightbox URL fragment (#piece-mug-01). */
+  /** Stable id, also used for the lightbox's data-alt/data-src wiring. */
   id: string;
-  category: WorkCategory;
-  /** Required — every image needs real alt text, even placeholders. */
+  /** Required — every image needs real alt text. */
   alt: string;
   /** Optional by design: captions are intentionally hidden by default. */
   caption?: string;
-  /** Path once real photography is dropped into /public/images/work/. */
+  /** Path to the image in /public/images/work/. */
   src: string;
   /** Roughly how tall the tile should read in the masonry grid. */
   aspect: 'square' | 'portrait' | 'wide';
-}
-
-export const categoryLabels: Record<WorkCategory, { label: string; description: string }> = {
-  pieces: {
-    label: 'pieces',
-    description: 'Mugs, bowls, and pieces made to be used every day.',
-  },
-  'larger-forms': {
-    label: 'Larger Forms',
-    description: 'More substantial sculptural and vessel work.',
-  },
-  experiments: {
-    label: 'Experiments',
-    description: 'Unusual forms, glaze tests, and work still finding its shape.',
-  },
-  process: {
-    label: 'Process',
-    description: 'Throwing, trimming, and glazing — the studio in motion.',
-  },
-};
-
-const placeholderAspects: WorkPiece['aspect'][] = ['square', 'portrait', 'wide'];
-
-function buildPlaceholderSet(category: WorkCategory, count: number, nounHint: string): WorkPiece[] {
-  return Array.from({ length: count }, (_, i) => {
-    const n = i + 1;
-    return {
-      id: `${category}-${String(n).padStart(2, '0')}`,
-      category,
-      alt: `Placeholder photo — ${nounHint} ${n}, to be replaced with final photography`,
-      src: `/images/work/${category}-${String(n).padStart(2, '0')}.jpg`,
-      aspect: placeholderAspects[i % placeholderAspects.length],
-    };
-  });
+  /** True once real photography exists at `src`; false renders a placeholder tile. */
+  ready: boolean;
 }
 
 export const workPieces: WorkPiece[] = [
-  ...buildPlaceholderSet('pieces', 8, 'functional ware piece'),
-  ...buildPlaceholderSet('larger-forms', 4, 'larger form'),
-  ...buildPlaceholderSet('experiments', 5, 'experimental piece'),
-  ...buildPlaceholderSet('process', 4, 'process shot'),
+  {
+    id: 'piece-01',
+    alt: 'Hand-painted mug styled after a canned San Marzano tomatoes label, with fresh tomatoes and vine set inside',
+    src: '/images/work/functional-01-tomato-mug.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
+  {
+    id: 'piece-02',
+    alt: 'Mug with a hand-painted school of blue mackerel and a deep red rim',
+    src: '/images/work/functional-02-fish-mug.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
+  {
+    id: 'piece-03',
+    alt: 'Chartreuse yellow mug with a carved waffle-grid texture',
+    src: '/images/work/functional-03-yellow-textured-mug.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
+  {
+    id: 'piece-04',
+    alt: "Two cups together: a blue and white striped cup reading 'East Coast' and a cup with a hand-painted seashell pattern",
+    src: '/images/work/functional-04-east-coast-and-shell-cups.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
+  {
+    id: 'piece-05',
+    alt: 'Cup with a blue drip glaze over white stoneware, photographed in afternoon light',
+    src: '/images/work/functional-05-blue-drip-cup.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
+  {
+    id: 'piece-06',
+    alt: "Blue and white striped cup reading 'East Coast' in red script, photographed in dramatic afternoon light",
+    src: '/images/work/functional-06-east-coast-cup.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
+  {
+    id: 'piece-07',
+    alt: 'Checkerboard-patterned planter in blue, orange, and green, holding a snake plant',
+    src: '/images/work/larger-forms-01-checkered-planter-snake-plant.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
+  {
+    id: 'piece-08',
+    alt: 'Checkerboard-patterned planter holding a calathea plant, on a sunlit windowsill',
+    src: '/images/work/larger-forms-02-checkered-planter-calathea.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
+  {
+    id: 'piece-09',
+    alt: 'Heavily textured cup with a bronze and blue glaze pooling over carved facets',
+    src: '/images/work/experiments-01-textured-blue-bronze-cup.jpg',
+    aspect: 'portrait',
+    ready: true,
+  },
 ];
-
-export function piecesByCategory(category: WorkCategory): WorkPiece[] {
-  return workPieces.filter((piece) => piece.category === category);
-}

@@ -25,14 +25,25 @@ const aspectClass: Record<WorkPiece['aspect'], string> = {
         type="button"
         data-lightbox
         data-alt={piece.alt}
+        data-src={piece.ready ? piece.src : ''}
         class="group block w-full break-inside-avoid text-left"
         aria-label={`View larger: ${piece.alt}`}
       >
-        <PlaceholderImage
-          alt={piece.alt}
-          ratio={aspectClass[piece.aspect]}
-          class="transition-opacity duration-300 ease-quiet group-hover:opacity-90"
-        />
+        {piece.ready ? (
+          <img
+            src={piece.src}
+            alt={piece.alt}
+            loading="lazy"
+            decoding="async"
+            class={`w-full ${aspectClass[piece.aspect]} object-cover transition-opacity duration-300 ease-quiet group-hover:opacity-90`}
+          />
+        ) : (
+          <PlaceholderImage
+            alt={piece.alt}
+            ratio={aspectClass[piece.aspect]}
+            class="transition-opacity duration-300 ease-quiet group-hover:opacity-90"
+          />
+        )}
       </button>
     ))
   }

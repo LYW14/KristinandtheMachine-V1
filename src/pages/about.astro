@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PlaceholderImage from '../components/PlaceholderImage.astro';
+import koiFishMug from '/Users/lucywang/Downloads/KristinandtheMachine-V1/public/images/koi-fish-about.png';
+import { Image } from 'astro:assets';
+
 import PullQuote from '../components/PullQuote.astro';
 ---
 
@@ -25,10 +28,12 @@ import PullQuote from '../components/PullQuote.astro';
           Kristin and the Machine is the name I've given to all of that—the things I make, the things that don't work, and my ongoing relationship with the pottery wheel.
         </p>
       </div>
-      <PlaceholderImage
-        alt="Early photograph from the artist's first ceramics classes"
+      <Image src = {koiFishMug}
+        alt="koi fish mug"
         ratio="aspect-[3/4]"
         class="sm:col-span-2"
       />
     </div>
+    
   </section>
+</BaseLayout>

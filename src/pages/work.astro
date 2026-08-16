@@ -2,33 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GalleryGrid from '../components/GalleryGrid.astro';
 import Lightbox from '../components/Lightbox.astro';
-import { categoryLabels, piecesByCategory, type WorkCategory } from '../data/work';
-
-const categoryOrder: WorkCategory[] = ['pieces', 'process'];
+import { workPieces } from '../data/work';
 ---
 
-<BaseLayout title="Work" description="A collection of functional ware, larger forms, experiments, and process shots." active="work">
+<BaseLayout title="Work" description="A collection of finished ceramic pieces." active="work">
   <section class="mx-auto max-w-6xl px-6 pb-4 pt-14 sm:px-8 sm:pt-20">
     <h1 class="font-display text-4xl text-ink sm:text-5xl">Work</h1>
     <p class="mt-4 max-w-measure text-clay/90">
-      Lorem ipsum dolor sit amet
+      A selection of finished pieces &mdash; functional ware, larger forms, and a few
+      experiments along the way.
     </p>
   </section>
 
-  {
-    categoryOrder.map((category, i) => (
-      <section
-        id={category}
-        class:list={['mx-auto max-w-6xl px-6 py-12 sm:px-8 sm:py-16', i !== 0 && 'border-t border-mist/40']}
-      >
-        <div class="mb-8 flex flex-col gap-2 sm:mb-10">
-          <span class="eyebrow">{categoryLabels[category].label}</span>
-          <p class="max-w-measure text-sm text-clay/70">{categoryLabels[category].description}</p>
-        </div>
-        <GalleryGrid pieces={piecesByCategory(category)} />
-      </section>
-    ))
-  }
+  <section class="mx-auto max-w-6xl px-6 py-10 sm:px-8 sm:py-14">
+    <GalleryGrid pieces={workPieces} />
+  </section>
 
   <Lightbox />
 </BaseLayout>
